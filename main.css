@@ -1,0 +1,9 @@
+.jumbotron {
+    background-color: black;
+    color: #eeeeee;
+}
+
+#life {
+    height: 300px;
+    width: 300px;
+}
