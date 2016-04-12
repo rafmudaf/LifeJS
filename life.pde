@@ -23,11 +23,8 @@ void fillPixel(int index, int onoroff) {
     int rowsBefore = floor(index/xres);
     int columnsBefore = index - rowsBefore*xres;
     for (int j=0; j<ypixSize; j++) {
-        int pixelsBefore = rowsBefore*xdim*ypixSize + columnsBefore*xpixSize*j;
+        int pixelsBefore = rowsBefore*xdim*ypixSize + columnsBefore*xpixSize + j*xdim;
         for (int i=0; i<xpixSize; i++) {
-            //int pixelsBefore = index*xpixSize+j*xdim;
-            //int rowsBefore = floor(index/xres)*ypixSize*xdim;
-            //int pixelsBefore = rowsBefore*xdim*ypixSize + columnsBefore*xpixSize*j;
             if (onoroff) {
                 img.pixels[i+pixelsBefore] = color(255,0,0);
             } else {
