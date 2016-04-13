@@ -7,3 +7,11 @@
     height: 300px;
     width: 300px;
 }
+
+/*
+// this causes the mouseX/Y functions to read incorrect pixels
+canvas {
+    width: 100%;
+    height: auto;
+}
+*/

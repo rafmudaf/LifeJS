@@ -1,11 +1,11 @@
 PImage img;
 int xdim = 500;
 int ydim = 500;
-int xres = 20;
-int yres = 20;
+int xres = 10;
+int yres = 10;
 int xpixSize = xdim/xres;
 int ypixSize = ydim/yres;
-lifePixel[] pixels = new lifePixel[xres*yres];
+lifePixel[] lifePixels = new lifePixel[xres*yres];
 
 void setup(){
     size(xdim, ydim);
@@ -13,43 +13,56 @@ void setup(){
     img = createImage(xdim, ydim, RGB);
 
     for (int i=0; i<xres*yres; i++) {
-        pixels[i] = new lifePixel( 1 );
+        lifePixels[i] = new lifePixel(false);
     }
-
-    fillPixel(0, 1);
 }
 
-void fillPixel(int index, int onoroff) {
+void fillPixel(int index) {
     int rowsBefore = floor(index/xres);
     int columnsBefore = index - rowsBefore*xres;
-    for (int j=0; j<ypixSize; j++) {
-        int pixelsBefore = rowsBefore*xdim*ypixSize + columnsBefore*xpixSize + j*xdim;
-        for (int i=0; i<xpixSize; i++) {
-            if (onoroff) {
-                img.pixels[i+pixelsBefore] = color(255,0,0);
-            } else {
+
+    //fill(color(255,0,0));
+    //rect(columnsBefore*xpixSize, rowsBefore*ypixSize, xpixSize, ypixSize);
+
+    if (lifePixels[index].isAlive()) {
+        for (int j=0; j<ypixSize; j++) {
+            int pixelsBefore = rowsBefore*xdim*ypixSize + columnsBefore*xpixSize + j*xdim;
+            for (int i=0; i<xpixSize; i++) {
                 img.pixels[i+pixelsBefore] = color(0,0,0);
+                lifePixels[index] = new lifePixel(false);
+            }
+        }
+    } else {
+        for (int j=0; j<ypixSize; j++) {
+            int pixelsBefore = rowsBefore*xdim*ypixSize + columnsBefore*xpixSize + j*xdim;
+            for (int i=0; i<xpixSize; i++) {
+                img.pixels[i+pixelsBefore] = color(255,0,0);
+                lifePixels[index] = new lifePixel(true);
             }
         }
     }
 }
 
 void draw(){
-    background(0,0,0);
     image(img,0,0);
 }
 
 void mousePressed() {
     int pixelIndex = floor(mouseX/xpixSize)+floor(mouseY/ypixSize)*xres;
-    fillPixel(pixelIndex, 1);
+    fillPixel(pixelIndex);
 }
 
 class lifePixel {
-    int pixWidth;
-    int pixHeight;
-    int[] globalPixelIndeces = new int[xpixSize*ypixSize];
+    bool alive;
 
-    lifePixel(int onoroff) {
-        int onoroff = onoroff;
+    lifePixel() {
+    }
+
+    lifePixel(boolean alive) {
+        this.alive = alive;
+    }
+
+    bool isAlive() {
+        return this.alive;
     }
 }
