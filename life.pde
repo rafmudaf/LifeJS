@@ -30,11 +30,6 @@ void fillPixel(int index, int onoroff) {
             } else {
                 img.pixels[i+pixelsBefore] = color(0,0,0);
             }
-            //if (onoroff) {
-            //    img.pixels[i+pixelsBefore+rowsBefore] = color(255,0,0);
-            //} else {
-            //    img.pixels[i+pixelsBefore+rowsBefore] = color(0,0,0);
-            //}
         }
     }
 }
@@ -42,18 +37,10 @@ void fillPixel(int index, int onoroff) {
 void draw(){
     background(0,0,0);
     image(img,0,0);
-    //image(img, mouseX-10, mouseY-10);
 }
 
 void mousePressed() {
     int pixelIndex = floor(mouseX/xpixSize)+floor(mouseY/ypixSize)*xres;
-    //print(mouseY);
-    //print(" ");
-    //print(ypixSize);
-    //print(" ");
-    //print(xres);
-    //print(" ");
-    //println(pixelIndex);
     fillPixel(pixelIndex, 1);
 }
 
