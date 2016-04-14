@@ -46,10 +46,8 @@ void fillPixel(int index) {
             for (int i=0; i<xpixSize; i++) {
                 if (j==0 || j==ypixSize-1 || i==0 || i==xpixSize-1) {
                     img.pixels[i+pixelsBefore] = color(30,30,30);
-                    //img.pixels[i+pixelsBefore] = color(255,0,255);
                 } else {
                     img.pixels[i+pixelsBefore] = color(0,0,0);
-                    //img.pixels[i+pixelsBefore] = color(255,0,255);
                 }
             }
         }
@@ -64,8 +62,8 @@ void fillPixel(int index) {
                     img.pixels[i+pixelsBefore] = color(70,20,70);
                     //img.pixels[i+pixelsBefore] = color(255,0,255);
                 } else {
-                    img.pixels[i+pixelsBefore] = color(150,20,150);
-                    //img.pixels[i+pixelsBefore] = color(255,0,255);
+                    //img.pixels[i+pixelsBefore] = color(150,20,150);
+                    img.pixels[i+pixelsBefore] = color(255,0,255);
                 }
             }
         }
