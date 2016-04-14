@@ -1,11 +1,12 @@
 PImage img;
 int xdim = 500;
 int ydim = 500;
-int xres = 10;
-int yres = 10;
+int xres = 50;
+int yres = 50;
 int xpixSize = xdim/xres;
 int ypixSize = ydim/yres;
-LifePixel[] lifePixels = new LifePixel[xres*yres];
+LifePixel[] oldPixels = new LifePixel[xres*yres];
+LifePixel[] newPixels = new LifePixel[xres*yres];
 bool go;
 
 TriangleButton goButton;
@@ -18,7 +19,8 @@ void setup(){
 
     // instantiate the pixel array
     for (int i=0; i<xres*yres; i++) {
-        lifePixels[i] = new LifePixel(0);
+        newPixels[i] = new LifePixel(1);
+        fillPixel(i);
     }
 
     // Define and create stop and go buttons
@@ -26,11 +28,6 @@ void setup(){
     color highlight = color(153);
     goButton = new TriangleButton(30, 30, buttoncolor, highlight);
     stopButton = new RectButton(150, 20, 100, buttoncolor, highlight);
-
-    fillPixel(20);
-    fillPixel(22);
-    fillPixel(23);
-    fillPixel(26);
 
     go = false;
 }
@@ -42,22 +39,37 @@ void fillPixel(int index) {
     //fill(color(255,0,0));
     //rect(columnsBefore*xpixSize, rowsBefore*ypixSize, xpixSize, ypixSize);
 
-    if (lifePixels[index].isAlive()) {
+    // turn pixel off
+    if (newPixels[index].isAlive()) {
         for (int j=0; j<ypixSize; j++) {
             int pixelsBefore = rowsBefore*xdim*ypixSize + columnsBefore*xpixSize + j*xdim;
             for (int i=0; i<xpixSize; i++) {
-                img.pixels[i+pixelsBefore] = color(0,0,0);
-                lifePixels[index] = new LifePixel(0);
+                if (j==0 || j==ypixSize-1 || i==0 || i==xpixSize-1) {
+                    img.pixels[i+pixelsBefore] = color(30,30,30);
+                    //img.pixels[i+pixelsBefore] = color(255,0,255);
+                } else {
+                    img.pixels[i+pixelsBefore] = color(0,0,0);
+                    //img.pixels[i+pixelsBefore] = color(255,0,255);
+                }
             }
         }
+        newPixels[index] = new LifePixel(0);
+
+    // turn pixel on
     } else {
         for (int j=0; j<ypixSize; j++) {
             int pixelsBefore = rowsBefore*xdim*ypixSize + columnsBefore*xpixSize + j*xdim;
             for (int i=0; i<xpixSize; i++) {
-                img.pixels[i+pixelsBefore] = color(255,0,0);
-                lifePixels[index] = new LifePixel(1);
+                if (j==0 || j==ypixSize-1 || i==0 || i==xpixSize-1) {
+                    img.pixels[i+pixelsBefore] = color(70,20,70);
+                    //img.pixels[i+pixelsBefore] = color(255,0,255);
+                } else {
+                    img.pixels[i+pixelsBefore] = color(150,20,150);
+                    //img.pixels[i+pixelsBefore] = color(255,0,255);
+                }
             }
         }
+        newPixels[index] = new LifePixel(1);
     }
 }
 
@@ -66,9 +78,9 @@ void draw(){
     //goButton.display();
     //stopButton.display();
 
-    //if (go) {
-    //    TheGameOfLife();
-    //}
+    if (go) {
+        TheGameOfLife();
+    }
 }
 
 void mousePressed() {
@@ -77,10 +89,16 @@ void mousePressed() {
 }
 
 void keyPressed() {
-    TheGameOfLife();
+    if (go) {
+        go = false;
+    } else {
+        go = true;
+    }
 }
 
 void TheGameOfLife() {
+    arrayCopy(newPixels, oldPixels);
+
     for (int i=0; i < xres*yres; i++) {
 
         int count = 0;
@@ -104,30 +122,33 @@ void TheGameOfLife() {
         let rightdown = i+xres+1;
         let down = i+xres
 
-        count += lifePixels[leftdown].value;
-        count += lifePixels[left].value;
-        count += lifePixels[leftup].value;
-        count += lifePixels[up].value;
-        count += lifePixels[rightup].value;
-        count += lifePixels[right].value;
-        count += lifePixels[rightdown].value;
-        count += lifePixels[down].value;
+        count += oldPixels[leftdown].value;
+        count += oldPixels[left].value;
+        count += oldPixels[leftup].value;
+        count += oldPixels[up].value;
+        count += oldPixels[rightup].value;
+        count += oldPixels[right].value;
+        count += oldPixels[rightdown].value;
+        count += oldPixels[down].value;
 
         // Any live cell with fewer than two live neighbours dies, as if caused by under-population.
         // Any live cell with more than three live neighbours dies, as if by over-population.
         // Any live cell with two or three live neighbours lives on to the next generation.
-        if ((count == 2 || count == 3) && lifePixels[i].isAlive()) {
+        if ((count == 2 || count == 3) && oldPixels[i].isAlive()) {
+            // pixel stays alive
+            continue;
+            //fillPixel(i);
+            //newPixels[i] = new LifePixel(1);
+        } else if (oldPixels[i].isAlive()) {
+            // pixel dies
             fillPixel(i);
-            lifePixels[i] = new LifePixel(1);
-        } else if (lifePixels[i].isAlive()) {
-            fillPixel(i);
-            lifePixels[i] = new LifePixel(0);
+            newPixels[i] = new LifePixel(0);
         }
 
         // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-        if (count == 3 && !lifePixels[i].isAlive()) {
+        if (count == 3 && !oldPixels[i].isAlive()) {
             fillPixel(i);
-            lifePixels[i] = new LifePixel(1);
+            newPixels[i] = new LifePixel(1);
         }
     }
 }
