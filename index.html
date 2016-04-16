@@ -78,8 +78,26 @@
             y: Math.floor(500 * (evt.clientY - rect.top) / rect.width)
         }
     }
+
+    $('#infinity-button').click(startIteration);
+    function startIteration() {
+        var pjs = Processing.getInstanceById('lifesketch');
+        pjs.start();
+    }
+
+    $('#one-button').click(oneIteration);
+    function oneIteration() {
+        var pjs = Processing.getInstanceById('lifesketch');
+        pjs.TheGameOfLife();
+    }
+
+    $('#pause-button').click(stopIteration);
+    function stopIteration() {
+        var pjs = Processing.getInstanceById('lifesketch');
+        pjs.stop();
+    }
     </script>
-    
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 </body>
