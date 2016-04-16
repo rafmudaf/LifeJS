@@ -3,17 +3,29 @@
     color: #eeeeee;
     text-align: center;
     font-family: "BlinkMacSystemFont", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-bottom: 0px;
+    padding: 0px;
 }
 
-#life {
-    height: 300px;
-    width: 300px;
+#jumbotron-container, #jumbotron-h1, #jumbotron-p {
+    /*margin: 0px;*/
 }
 
-/*
-// this causes the mouseX/Y functions to read incorrect pixels
+#canvas-container {
+    height: 500px;
+}
 canvas {
     width: 100%;
     height: auto;
 }
-*/
+
+.btn-life {
+    height: 40px;
+    justify-content: center;
+    /*font-size: 24px;*/
+    width:100%;
+}
+
+#controlbar-row {
+    background-color: #000000;
+}

@@ -1,8 +1,8 @@
 PImage img;
 int xdim = 500;
 int ydim = 500;
-int xres = 50;
-int yres = 50;
+int xres = 20;
+int yres = 20;
 int xpixSize = xdim/xres;
 int ypixSize = ydim/yres;
 LifePixel[] oldPixels = new LifePixel[xres*yres];
@@ -81,10 +81,15 @@ void draw(){
     }
 }
 
-void mousePressed() {
-    int pixelIndex = floor(mouseX/xpixSize)+floor(mouseY/ypixSize)*xres;
-    fillPixel(pixelIndex);
-}
+//void mousePressed() {
+//    int pixelIndex = floor(mouseX/xpixSize)+floor(mouseY/ypixSize)*xres;
+//    fillPixel(pixelIndex);
+//}
+
+//void mouseClicked() {
+//    int pixelIndex = floor(mouseX/xpixSize)+floor(mouseY/ypixSize)*xres;
+//    fillPixel(pixelIndex);
+//}
 
 void keyPressed() {
     if (go) {
