@@ -1,3 +1,7 @@
+body {
+    background-color: black;
+}
+
 .jumbotron {
     background-color: black;
     color: #eeeeee;
@@ -17,6 +21,9 @@
 canvas {
     width: 100%;
     height: auto;
+    /*border: purple 5px;*/
+    /*border-width: 2px;*/
+    /*border-color: purple;*/
 }
 
 .btn-life {
