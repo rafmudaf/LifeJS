@@ -45,16 +45,81 @@
         </div>
     </div>
 
-
     <div id="canvas-row" class="row">
-        <div class="
-        col-xs-12 col-xs-offset-0
-        col-sm-10 col-sm-offset-1
-        col-md-8 col-md-offset-2
-        " id="canvas-container">
-            <canvas id="lifesketch" data-processing-sources="life.pde"></canvas>
+        <div id="canvas-container" class="col-xs-12 col-xs-offset-0
+            col-sm-10 col-sm-offset-1
+            col-md-8 col-md-offset-2">
+            <canvas id="lifesketch"
+                    class="col-xs-10 col-xs-offset-1
+                            col-sm-8 col-sm-offset-2
+                            col-md-6 col-md-offset-3"
+                    data-processing-sources="life.pde"></canvas>
         </div>
     </div>
+
+    <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-2" id="aboutgol-button">
+    <button type="button" class="btn btn-about btn-info btn-lg" data-toggle="modal" data-target="#aboutGOL">What's Game of Life</button>
+    </div>
+    <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0" id="aboutraf-button">
+    <button type="button" class="btn btn-about btn-info btn-lg" data-toggle="modal" data-target="#aboutRaf">Who Made This</button>
+    </div>
+    <div id="aboutGOL" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">About Conway's Gme of Life</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Four simple rules:
+                        <h5>TL;DR</h5>
+                        <ol>
+                            <li>Any live cell with fewer than two live neighbours dies, as if caused by under-population</li>
+                            <li>Any live cell with more than three live neighbours dies, as if by over-population</li>
+                            <li>Any live cell with two or three live neighbours lives on to the next generation</li>
+                            <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction</li>
+                        </ol>
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="aboutRaf" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">By: Rafael M Mudafort</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        I made this, of course! I'm Rafael Mudafort. I'm an aerospace engineer turned software engineer
+                        living and playing in New Orleans, Louisiana. I enjoy writing software, but this is my first game
+                        project and it was much more fun than I thought it would be.
+                        <hr>
+                        Drop me a line if you have something to say:<br>
+                        rafmudaf@gmail.com<br>
+                        (318) 572 5650<br>
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
 
     <script>
     var xdim = 500;
@@ -108,7 +173,6 @@
 
         ga('create', 'UA-68999653-4', 'auto');
         ga('send', 'pageview');
-
     </script>
 </body>
 </html>
