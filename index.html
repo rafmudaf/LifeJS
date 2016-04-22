@@ -31,37 +31,39 @@
 
     <div id="controlbar-row" class="row">
         <div class="container">
-            <div class="col-xs-4" id="infinity-button">
+            <div class="col-xs-4 col-md-2 col-md-offset-3" id="infinity-button">
                 <button class="btn btn-life btn-success">&infin;</button>
             </div>
 
-            <div class="col-xs-4" id="one-button">
+            <div class="col-xs-4 col-md-2" id="one-button">
                 <button class="btn btn-life btn-info">1</button>
             </div>
 
-            <div class="col-xs-4" id="pause-button">
+            <div class="col-xs-4 col-md-2" id="pause-button">
                 <button class="btn btn-life btn-warning">||</button>
             </div>
         </div>
     </div>
 
     <div id="canvas-row" class="row">
-        <div id="canvas-container" class="col-xs-12 col-xs-offset-0
+        <div id="canvas-container" class="
+            col-xs-12 col-xs-offset-0
             col-sm-10 col-sm-offset-1
             col-md-8 col-md-offset-2">
             <canvas id="lifesketch"
                     class="col-xs-10 col-xs-offset-1
                             col-sm-8 col-sm-offset-2
-                            col-md-6 col-md-offset-3"
+                            col-md-6 col-md-offset-3
+                            col-lg-4 col-lg-offset-4"
                     data-processing-sources="life.pde"></canvas>
         </div>
     </div>
 
-    <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-2" id="aboutgol-button">
-    <button type="button" class="btn btn-about btn-info btn-lg" data-toggle="modal" data-target="#aboutGOL">What's Game of Life</button>
+    <div class="col-xs-12 col-sm-3 col-sm-offset-3" id="aboutgol-button">
+    <button type="button" class="btn btn-about btn-lg" data-toggle="modal" data-target="#aboutGOL">What's Game of Life</button>
     </div>
-    <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0" id="aboutraf-button">
-    <button type="button" class="btn btn-about btn-info btn-lg" data-toggle="modal" data-target="#aboutRaf">Who Made This</button>
+    <div class="col-xs-12 col-sm-3" id="aboutraf-button">
+    <button type="button" class="btn btn-about btn-lg" data-toggle="modal" data-target="#aboutRaf">Who Made This</button>
     </div>
     <div id="aboutGOL" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -117,9 +119,6 @@
 
         </div>
     </div>
-
-
-
 
     <script>
     var xdim = 500;
