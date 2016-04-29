@@ -1,5 +1,6 @@
 body {
     background-color: black;
+    color: white;
 }
 
 .jumbotron {
@@ -11,8 +12,14 @@ body {
     padding: 0px;
 }
 
-#jumbotron-container, #jumbotron-h1, #jumbotron-p {
+#jumbotron-container, #jumbotron-h1 {
     /*margin: 0px;*/
+}
+
+#status {
+    text-align: center;
+    font-family: "BlinkMacSystemFont", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: large;
 }
 
 #canvas-container {
@@ -40,6 +47,19 @@ body {
     width:100%;
 }
 
+.btn-information, .btn-information:active {
+    height: 40px;
+    justify-content: center;
+    /*font-size: 24px;*/
+    width:100%;
+    background-color: black;
+    border-color: white;
+}
+
+#aliveCount {
+    background-color: rgb(255,0,255);
+}
+
 .btn-about {
     color: white;
     background-color: transparent;
@@ -48,10 +68,18 @@ body {
     justify-content: center;
     width:100%;
 }
-.btn-about:active {
+.btn-about:hover {
+    color: black;
+    background-color: white;
+}.btn-about:active {
     background-color: transparent;
 }
 
 #controlbar-row {
     background-color: #000000;
+    margin-bottom: 10px;
+}
+#infobar-row {
+    background-color: #000000;
+    margin-bottom: 10px;
 }

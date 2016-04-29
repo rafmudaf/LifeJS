@@ -1,3 +1,11 @@
+interface JavaScript {
+    void updateGenerationCount(int gen);
+}
+void bindJavascript(JavaScript js) {
+    javascript = js;
+}
+JavaScript javascript;
+
 PImage img;
 int xdim = 500;
 int ydim = 500;
@@ -5,6 +13,7 @@ int xres = 20;
 int yres = 20;
 int xpixSize = xdim/xres;
 int ypixSize = ydim/yres;
+int generationCount = 0;
 LifePixel[] oldPixels = new LifePixel[xres*yres];
 LifePixel[] newPixels = new LifePixel[xres*yres];
 bool go;
@@ -69,14 +78,6 @@ void draw(){
 //    fillPixel(pixelIndex);
 //}
 
-//void keyPressed() {
-//    if (go) {
-//        go = false;
-//    } else {
-//        go = true;
-//    }
-//}
-
 void start() { go = true; }
 void stop() { go = false; }
 
@@ -134,6 +135,11 @@ void TheGameOfLife() {
             fillPixel(i);
             newPixels[i] = new LifePixel(1);
         }
+    }
+
+    generationCount = generationCount + 1;
+    if (javascript!=null) {
+        javascript.updateGenerationCount(generationCount);
     }
 }
 
