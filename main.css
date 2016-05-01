@@ -30,6 +30,7 @@ body {
     padding: 0px;
     margin: 0 auto;
 }
+
 /*canvas {*/
 #lifesketch {
     padding: 0px;
@@ -47,7 +48,7 @@ body {
     width:100%;
 }
 
-.btn-information, .btn-information:active {
+.btn-information {
     height: 40px;
     justify-content: center;
     /*font-size: 24px;*/
@@ -56,23 +57,21 @@ body {
     border-color: white;
 }
 
-#aliveCount {
-    background-color: rgb(255,0,255);
-}
-
 .btn-about {
-    color: white;
-    background-color: transparent;
-    border: none;
     height: 40px;
     justify-content: center;
     width:100%;
+    background-color: transparent;
+    border: none;
+    color: white;
 }
 .btn-about:hover {
     color: black;
     background-color: white;
-}.btn-about:active {
-    background-color: transparent;
+}
+
+.modal {
+    color: black;
 }
 
 #controlbar-row {
