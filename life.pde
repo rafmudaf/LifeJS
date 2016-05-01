@@ -13,7 +13,7 @@ int xres = 20;
 int yres = 20;
 int xpixSize = xdim/xres;
 int ypixSize = ydim/yres;
-int generationCount = 0;
+int generationCount;
 LifePixel[] oldPixels = new LifePixel[xres*yres];
 LifePixel[] newPixels = new LifePixel[xres*yres];
 bool go;
@@ -22,6 +22,7 @@ void setup(){
     size(xdim, ydim);
     frameRate( 10 );
     go = false;
+    generationCount = 0;
     img = createImage(xdim, ydim, RGB);
 
     // instantiate the pixel array
@@ -73,15 +74,20 @@ void draw(){
     }
 }
 
-//void mouseClicked() {
-//    int pixelIndex = floor(mouseX/xpixSize)+floor(mouseY/ypixSize)*xres;
-//    fillPixel(pixelIndex);
-//}
+void runFor(int iterations){
+    for (int i = 0; i < iterations; i++) {
+        TheGameOfLife();
+        go = false;
+    }
+}
 
 void start() { go = true; }
 void stop() { go = false; }
 
 void TheGameOfLife() {
+    // set the go boolean to false and change to true if there is a change in the mesh
+    go = false;
+
     arrayCopy(newPixels, oldPixels);
 
     for (int i=0; i < xres*yres; i++) {
@@ -122,18 +128,18 @@ void TheGameOfLife() {
         if ((count == 2 || count == 3) && oldPixels[i].isAlive()) {
             // pixel stays alive
             continue;
-            //fillPixel(i);
-            //newPixels[i] = new LifePixel(1);
         } else if (oldPixels[i].isAlive()) {
             // pixel dies
             fillPixel(i);
             newPixels[i] = new LifePixel(0);
+            go = true;
         }
 
         // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
         if (count == 3 && !oldPixels[i].isAlive()) {
             fillPixel(i);
             newPixels[i] = new LifePixel(1);
+            go = true;
         }
     }
 

@@ -70,17 +70,17 @@
 
     <div id="infobar-row" class="row">
         <div class="container">
-            <!--<div class="col-xs-4 col-md-2 col-md-offset-3" id="deadCount">-->
-                <!--<button class="btn btn-life btn-information">0</button>-->
-            <!--</div>-->
-
-            <div class="col-xs-4 col-md-2" id="genCount">
-                <button class="btn btn-life btn-information">0</button>
+            <div class="col-xs-4 col-md-2 col-md-offset-3" id="reset-button">
+                <button class="btn btn-life btn-information">reset</button>
             </div>
 
-            <!--<div class="col-xs-4 col-md-2">-->
-                <!--<button class="btn btn-life btn-information" id="aliveCount"></button>-->
-            <!--</div>-->
+            <div class="col-xs-4 col-md-2">
+                <button class="btn btn-life btn-information" id="genCount" disabled="disabled">0</button>
+            </div>
+
+            <div class="col-xs-4 col-md-2">
+                <button class="btn btn-life btn-information" id="add">add</button>
+            </div>
         </div>
     </div>
 
@@ -112,14 +112,21 @@
                     <h4 class="modal-title">About Conway's Game of Life</h4>
                 </div>
                 <div class="modal-body">
+                    <h5>TL;DR</h5>
                     <p>Four simple rules:
-                        <h5>TL;DR</h5>
                         <ol>
                             <li>Any live cell with fewer than two live neighbours dies, as if caused by under-population</li>
                             <li>Any live cell with more than three live neighbours dies, as if by over-population</li>
                             <li>Any live cell with two or three live neighbours lives on to the next generation</li>
                             <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction</li>
                         </ol>
+                    </p>
+
+                    <h5>How to "play"</h5>
+                    <p>
+                        To "play", click on the grid to create a starting seed and then press the infinity button. The
+                        objective of the game depends on who is playing. Some players aim to create a seed that will
+                        look cool while others try to pick a seed that will continue for a large number of iterations.
 
                     </p>
                 </div>
@@ -148,14 +155,12 @@
                         Drop me a line if you have something to say:<br>
                         rafmudaf@gmail.com<br>
                         (318) 572 5650<br>
-
                     </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -209,13 +214,20 @@
     $('#one-button').click(oneIteration);
     function oneIteration() {
         var pjs = Processing.getInstanceById('lifesketch');
-        pjs.TheGameOfLife();
+        pjs.runFor(1);
     }
 
     $('#pause-button').click(stopIteration);
     function stopIteration() {
         var pjs = Processing.getInstanceById('lifesketch');
         pjs.stop();
+    }
+
+    $('#reset-button').click(reset);
+    function reset() {
+        var pjs = Processing.getInstanceById('lifesketch');
+        pjs.setup();
+        updateGenerationCount(0);
     }
     </script>
 
