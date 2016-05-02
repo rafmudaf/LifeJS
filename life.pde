@@ -9,13 +9,15 @@ JavaScript javascript;
 PImage img;
 int xdim = 500;
 int ydim = 500;
+int xres_max = 50;
+int yres_max = 50;
 int xres = 20;
 int yres = 20;
 int xpixSize = xdim/xres;
 int ypixSize = ydim/yres;
 int generationCount;
-LifePixel[] oldPixels = new LifePixel[xres*yres];
-LifePixel[] newPixels = new LifePixel[xres*yres];
+LifePixel[] oldPixels = new LifePixel[xres_max*yres_max];
+LifePixel[] newPixels = new LifePixel[xres_max*yres_max];
 bool go;
 
 void setup(){
@@ -26,9 +28,23 @@ void setup(){
     img = createImage(xdim, ydim, RGB);
 
     // instantiate the pixel array
-    for (int i=0; i<xres*yres; i++) {
+    for (int i=0; i<xres_max*yres_max; i++) {
         newPixels[i] = new LifePixel(1);
         fillPixel(i);
+    }
+}
+
+void updateMesh(int index, int value) {
+    if (index == 0) {
+        xres = value;
+        xpixSize = xdim/xres;
+    } else if (index == 1) {
+        yres = value;
+        ypixSize = ydim/yres;
+    }
+
+    if (javascript!=null) {
+        javascript.setCanvasSize(xdim, ydim, xres, yres);
     }
 }
 
@@ -146,6 +162,12 @@ void TheGameOfLife() {
     generationCount = generationCount + 1;
     if (javascript!=null) {
         javascript.updateGenerationCount(generationCount);
+    }
+
+    if (!go) {
+        if (javascript!=null) {
+            javascript.updateStatus('no grid change - game paused');
+        }
     }
 }
 

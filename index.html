@@ -12,6 +12,8 @@
     <link href="main.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="processing.js"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/bootstrap-slider.js'></script>
+    <link rel='stylesheet' type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.0.2/css/bootstrap-slider.css'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +49,7 @@
             <div class="col-xs-12 col-xs-offset-0
                         col-sm-10 col-sm-offset-1
                         col-md-8 col-md-offset-2">
-                <p id="status">Click to make a seed</p>
+                <p id="status">click to make a seed</p>
             </div>
         </div>
     </div>
@@ -81,6 +83,20 @@
             <div class="col-xs-4 col-md-2">
                 <button class="btn btn-life btn-information" id="add">add</button>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <input id="x-resolution-slider" type="text" data-slider-min="10" data-slider-max="200" data-slider-step="1" data-slider-value="10"/>
+            <span id="x-resolution-value-label">horizontal mesh resolution: <span id="x-resolution-value">10</span></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <input id="y-resolution-slider" type="text" data-slider-min="10" data-slider-max="200" data-slider-step="1" data-slider-value="10"/>
+            <span id="y-resolution-value-label">vertical mesh resolution: <span id="y-resolution-value">10</span></span>
         </div>
     </div>
 
@@ -167,28 +183,89 @@
     <script>
         (function() {
             $("#infinity-button").click(function () {
-                $("#status").text("Infinitely Playing");
+                updateStatus('infinitely playing');
             });
             $("#one-button").click(function () {
-                $("#status").text("One Generation Played");
+                updateStatus("one generation played");
             });
             $("#pause-button").click(function () {
-                $("#status").text("Paused");
+                updateStatus("paused");
             });
         })();
 
         function updateGenerationCount(gen) {
             $("#genCount").text(gen);
         }
+        function updateStatus(msg) {
+            $("#status").text(msg);
+        }
     </script>
 
     <script>
-    var xdim = 500;
-    var ydim = 500;
-    var xres = 20;
-    var yres = 20;
-    var xpixSize = xdim/xres;
-    var ypixSize = ydim/yres;
+//    var xdim = 500;
+//    var ydim = 500;
+//    var xres = 20;
+//    var yres = 20;
+//    var xpixSize = xdim/xres;
+//    var ypixSize = ydim/yres;
+    var xdim;
+    var ydim;
+    var xres;
+    var yres;
+    var xpixSize;
+    var ypixSize;
+    var paused;
+
+    function setCanvasSize(xdimin, ydimin, xresin, yresin) {
+        xdim = xdimin;
+        ydim = ydimin;
+        xres = xresin;
+        yres = yresin;
+        xpixSize = xdim/xres;
+        ypixSize = ydim/yres;
+    }
+    (function () {setCanvasSize(500, 500, 20, 20)})();
+
+    // With JQuery
+    $("#x-resolution-slider").slider();
+    $("#x-resolution-slider").on("slide", function(slideEvt) {
+        var sliderValue = slideEvt.value;
+        var resolution;
+        if (500 % sliderValue !== 0) {
+            for (var i=0; i<500; i++) {
+                sliderValue = sliderValue + 1;
+                if (500 % sliderValue === 0) {
+                    break;
+                }
+            }
+        }
+
+        var resolution = 500 / sliderValue;
+
+        $("#x-resolution-value").text(resolution);
+        var pjs = Processing.getInstanceById('lifesketch');
+        pjs.updateMesh(0, resolution);
+    });
+
+    $("#y-resolution-slider").slider();
+    $("#y-resolution-slider").on("slide", function(slideEvt) {
+        var sliderValue = slideEvt.value;
+        var resolution;
+        if (500 % sliderValue !== 0) {
+            for (var i=0; i<500; i++) {
+                sliderValue = sliderValue + 1;
+                if (500 % sliderValue === 0) {
+                    break;
+                }
+            }
+        }
+
+        var resolution = 500 / sliderValue;
+
+        $("#y-resolution-value").text(resolution);
+        var pjs = Processing.getInstanceById('lifesketch');
+        pjs.updateMesh(1, resolution);
+    });
 
     $('#lifesketch').click(paintAPixel);
     function paintAPixel(e) {
