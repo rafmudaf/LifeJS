@@ -82,3 +82,13 @@ body {
     background-color: #000000;
     margin-bottom: 10px;
 }
+
+#infinity-button {
+    background-color: green;
+}
+#one-button {
+    background-color: cyan;
+}
+#pause-button {
+    background-color: yellow;
+}
