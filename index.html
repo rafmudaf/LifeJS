@@ -101,7 +101,7 @@
         <div id="canvas-container" class="
             col-xs-12 col-xs-offset-0
             col-sm-10 col-sm-offset-1
-            col-md-8 col-md-offset-2">
+             col-md-8 col-md-offset-2">
             <canvas id="lifesketch"
                     class="col-xs-10 col-xs-offset-1
                             col-sm-8 col-sm-offset-2
@@ -177,136 +177,8 @@
         </div>
     </div>
 
-    <script>
-        (function() {
-            $("#infinity-button").click(function () {
-                updateStatus('infinitely playing');
-            });
-            $("#one-button").click(function () {
-                updateStatus("one generation played");
-            });
-            $("#pause-button").click(function () {
-                updateStatus("paused");
-            });
-        })();
-
-        function updateGenerationCount(gen) {
-            $("#genCount").text(gen);
-        }
-        function updateStatus(msg) {
-            $("#status").text(msg);
-        }
-    </script>
-
-    <script>
-//    var xdim = 500;
-//    var ydim = 500;
-//    var xres = 20;
-//    var yres = 20;
-//    var xpixSize = xdim/xres;
-//    var ypixSize = ydim/yres;
-    var xdim;
-    var ydim;
-    var xres;
-    var yres;
-    var xpixSize;
-    var ypixSize;
-    var paused;
-
-    function setCanvasSize(xdimin, ydimin, xresin, yresin) {
-        xdim = xdimin;
-        ydim = ydimin;
-        xres = xresin;
-        yres = yresin;
-        xpixSize = xdim/xres;
-        ypixSize = ydim/yres;
-    }
-    (function () {setCanvasSize(500, 500, 20, 20)})();
-
-    // With JQuery
-    $("#x-resolution-slider").slider();
-    $("#x-resolution-slider").on("slide", function(slideEvt) {
-        var sliderValue = slideEvt.value;
-        var resolution;
-        if (500 % sliderValue !== 0) {
-            for (var i=0; i<500; i++) {
-                sliderValue = sliderValue + 1;
-                if (500 % sliderValue === 0) {
-                    break;
-                }
-            }
-        }
-
-        var resolution = 500 / sliderValue;
-
-        $("#x-resolution-value").text(resolution);
-        var pjs = Processing.getInstanceById('lifesketch');
-        pjs.updateMesh(0, resolution);
-    });
-
-    $("#y-resolution-slider").slider();
-    $("#y-resolution-slider").on("slide", function(slideEvt) {
-        var sliderValue = slideEvt.value;
-        var resolution;
-        if (500 % sliderValue !== 0) {
-            for (var i=0; i<500; i++) {
-                sliderValue = sliderValue + 1;
-                if (500 % sliderValue === 0) {
-                    break;
-                }
-            }
-        }
-
-        var resolution = 500 / sliderValue;
-
-        $("#y-resolution-value").text(resolution);
-        var pjs = Processing.getInstanceById('lifesketch');
-        pjs.updateMesh(1, resolution);
-    });
-
-    $('#lifesketch').click(paintAPixel);
-    function paintAPixel(e) {
-        var pjs = Processing.getInstanceById('lifesketch');
-        var mouseXY = getMousePos(document.getElementById('lifesketch'), e);
-        var pixelIndex = Math.floor(mouseXY.x/xpixSize)+Math.floor(mouseXY.y/ypixSize)*xres;
-        pjs.fillPixel(pixelIndex);
-    }
-    function getMousePos(canvas, evt) {
-        var rect = canvas.getBoundingClientRect();
-        return {
-            x: Math.floor(500 * (evt.clientX - rect.left) / rect.height),
-            y: Math.floor(500 * (evt.clientY - rect.top) / rect.width)
-        }
-    }
-
-    $('#infinity-button').click(startIteration);
-    function startIteration() {
-        var pjs = Processing.getInstanceById('lifesketch');
-        pjs.start();
-    }
-
-    $('#one-button').click(oneIteration);
-    function oneIteration() {
-        var pjs = Processing.getInstanceById('lifesketch');
-        pjs.runFor(1);
-    }
-
-    $('#pause-button').click(stopIteration);
-    function stopIteration() {
-        var pjs = Processing.getInstanceById('lifesketch');
-        pjs.stop();
-    }
-
-    $('#reset-button').click(reset);
-    function reset() {
-        var pjs = Processing.getInstanceById('lifesketch');
-        pjs.setup();
-        updateGenerationCount(0);
-    }
-    </script>
-
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    
+    <script src="index.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
