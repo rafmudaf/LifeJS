@@ -7,6 +7,10 @@
 
 // UI handling
 $('#mesh-resolution-slider').slider({
+    ticks: [0, 100, 200],
+    ticks_labels: ['Coarse', 'Medium', 'Fine'],
+    ticks_snap_bounds: 30,
+    step: 50
 }).on('slideStop', updateMesh);
 
 $('#lifesketch').click(paintAPixel);
@@ -57,35 +61,24 @@ function setCanvasSize(xdimin, ydimin, xresin, yresin) {
 function updateMesh() {
     var pjs = Processing.getInstanceById('lifesketch');
     
-    var xcount = $("#x-resolution-slider").data("slider").getValue();
-    var ycount = $("#y-resolution-slider").data("slider").getValue();
+    var meshLevel = $('#mesh-resolution-slider').data('slider').getValue();
     var resolution;
-
-    // console.log(xcount, ycount);
     
-    if (500 % xcount !== 0) {
+    if (500 % meshLevel !== 0) {
         for (var i=0; i<500; i++) {
-            xcount = xcount + 1;
-            if (500 % xcount === 0) {
+            meshLevel = meshLevel + 1;
+            if (500 % meshLevel === 0) {
                 break;
             }
         }
     }
-    resolution = 500 / xcount;
+    resolution = 500 / meshLevel;
+    
     $('#mesh-resolution-value').text(resolution);
     pjs.updateMesh(0, resolution);
-
-    if (500 % ycount !== 0) {
-        for (var i=0; i<500; i++) {
-            ycount = ycount + 1;
-            if (500 % ycount === 0) {
-                break;
-            }
-        }
-    }
-    resolution = 500 / ycount;
-    $("#y-resolution-value").text(resolution);
     pjs.updateMesh(1, resolution);
+    
+    reset();
 }
 
 function paintAPixel(e) {
