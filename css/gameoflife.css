@@ -16,7 +16,7 @@ body {
     /*margin: 0px;*/
 }
 
-#status {
+.info-label {
     text-align: center;
     font-family: "BlinkMacSystemFont", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: large;

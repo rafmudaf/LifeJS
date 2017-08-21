@@ -37,13 +37,13 @@
     <div class="jumbotron">
         <div id="jumbotron-container" class="container-fluid">
             <h1 id="jumbotron-h1">Raf's Conway's Game of Life</h1>
-
         </div>
     </div>
 
     <div class="row">
         <div class="container">
-            <div class="col-xs-12 col-xs-offset-0
+            <div class="info-label
+                        col-xs-12 col-xs-offset-0
                         col-sm-10 col-sm-offset-1
                         col-md-8 col-md-offset-2">
                 <p id="status">click to make a seed</p>
@@ -84,12 +84,15 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-            <input id="x-resolution-slider" type="text" data-slider-min="10" data-slider-max="200" data-slider-step="1" data-slider-value="10"/>
-            <span id="x-resolution-value-label">horizontal mesh resolution: <span id="x-resolution-value">10</span></span>
+        <div class="container">
+            <div class="info-label
+                      col-xs-12 col-xs-offset-0
+                      col-sm-10 col-sm-offset-1
+                      col-md-8 col-md-offset-2">
+                <span id="mesh-resolution-value-label">Mesh Level</span>
+            </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-xs-6 col-xs-offset-3">
             <input id="y-resolution-slider" type="text" data-slider-min="10" data-slider-max="200" data-slider-step="1" data-slider-value="10"/>
