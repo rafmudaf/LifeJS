@@ -26,20 +26,13 @@ $('#pause-button').click(stopIteration);
 
 $('#reset-button').click(reset);
 
-
-// var xdim = 500;
-// var ydim = 500;
-// var xres = 20;
-// var yres = 20;
-// var xpixSize = xdim/xres;
-// var ypixSize = ydim/yres;
+// Global variables
 var xdim;
 var ydim;
 var xres;
 var yres;
 var xpixSize;
 var ypixSize;
-var paused;
 
 function updateGenerationCount(gen) {
     $('#genCount').text(gen);
