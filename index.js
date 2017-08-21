@@ -2,7 +2,7 @@
 
 // init function
 (function() {
-    setCanvasSize(500, 500, 20, 20);
+    setCanvasSize(500, 500, 25, 25);
 })();
 
 // UI handling
@@ -11,7 +11,8 @@ $('#mesh-resolution-slider').slider({
     ticks_labels: ['Coarse', 'Medium', 'Fine'],
     ticks_snap_bounds: 1,
     tooltip: "hide",
-    step: 1
+    step: 1,
+    value: 2
 }).on('slideStop', updateMeshResolution);
 
 $('#lifesketch').click(paintAPixel);
@@ -53,6 +54,8 @@ function setCanvasSize(xdimin, ydimin, xresin, yresin) {
 }
 
 function resolutionMap(index) {
+    // index - mesh count
+    // the mesh count must divide evenly into 500
     var map = {
        1: 10,
        2: 25,
