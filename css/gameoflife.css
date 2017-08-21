@@ -84,11 +84,11 @@ body {
 }
 
 #infinity-button {
-    background-color: green;
+    border-color: magenta;
 }
 #one-button {
-    background-color: cyan;
+    border-color: cyan;
 }
 #pause-button {
-    background-color: yellow;
+    border-color: yellow;
 }
