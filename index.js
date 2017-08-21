@@ -10,6 +10,7 @@ $('#mesh-resolution-slider').slider({
     ticks: [1, 2, 3],
     ticks_labels: ['Coarse', 'Medium', 'Fine'],
     ticks_snap_bounds: 1,
+    tooltip: "hide",
     step: 1
 }).on('slideStop', updateMeshResolution);
 
