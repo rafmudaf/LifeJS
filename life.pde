@@ -34,15 +34,11 @@ void setup(){
     }
 }
 
-void updateMesh(int index, int value) {
-    if (index == 0) {
-        xres = value;
-        xpixSize = xdim/xres;
-    } else if (index == 1) {
-        yres = value;
-        ypixSize = ydim/yres;
-    }
-
+void updateMeshResolution(int value) {
+    xres = value;
+    yres = value;
+    xpixSize = xdim/xres;    
+    ypixSize = ydim/yres;
     if (javascript!=null) {
         javascript.setCanvasSize(xdim, ydim, xres, yres);
     }
