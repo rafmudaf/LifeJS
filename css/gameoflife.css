@@ -1,8 +1,10 @@
+
 body {
     background-color: black;
     color: white;
 }
 
+/*jumbotron*/
 .jumbotron {
     background-color: black;
     color: #eeeeee;
@@ -12,16 +14,61 @@ body {
     padding: 0px;
 }
 
-#jumbotron-container, #jumbotron-h1 {
-    /*margin: 0px;*/
-}
-
+/*general labels*/
 .info-label {
     text-align: center;
     font-family: "BlinkMacSystemFont", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: large;
 }
 
+/*buttons*/
+.btn-life {
+    height: 40px;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-information {
+    background-color: black;
+    border-color: white;
+}
+
+#infinity-button {
+    border-color: magenta;
+}
+
+#one-button {
+    border-color: cyan;
+}
+
+#pause-button {
+    border-color: yellow;
+}
+
+#infobar-row, #controlbar-row {
+    background-color: #000000;
+    margin-bottom: 10px;
+}
+
+/*slider*/
+#slider-container {
+    text-align: center;
+}
+
+#slider .slider-tick,
+#slider .slider-track-high {
+    border:1px solid grey;
+  	background: #000000;
+}
+
+#slider .slider-selection,
+#slider .slider-tick.in-selection,
+#slider .slider-handle {
+    border:1px solid #FF5349;
+  	background: #000000;
+}
+
+/*canvas*/
 #canvas-container {
     /*height: 500px;*/
     height: 100%;
@@ -31,64 +78,13 @@ body {
     margin: 0 auto;
 }
 
-/*canvas {*/
 #lifesketch {
     padding: 0px;
     width: auto;
     height: 100%;
-    /*border: purple 5px;*/
-    /*border-width: 2px;*/
-    /*border-color: purple;*/
 }
 
-.btn-life {
-    height: 40px;
-    justify-content: center;
-    /*font-size: 24px;*/
-    width:100%;
-}
-
-.btn-information {
-    height: 40px;
-    justify-content: center;
-    /*font-size: 24px;*/
-    width:100%;
-    background-color: black;
-    border-color: white;
-}
-
-.btn-about {
-    height: 40px;
-    justify-content: center;
-    width:100%;
-    background-color: transparent;
-    border: none;
-    color: white;
-}
-.btn-about:hover {
-    color: black;
-    background-color: white;
-}
-
+/*modal*/
 .modal {
     color: black;
-}
-
-#controlbar-row {
-    background-color: #000000;
-    margin-bottom: 10px;
-}
-#infobar-row {
-    background-color: #000000;
-    margin-bottom: 10px;
-}
-
-#infinity-button {
-    border-color: magenta;
-}
-#one-button {
-    border-color: cyan;
-}
-#pause-button {
-    border-color: yellow;
 }
