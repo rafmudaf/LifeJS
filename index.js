@@ -12,13 +12,13 @@ $("#x-resolution-slider, #y-resolution-slider").on("slideStop", reset);
 
 $('#lifesketch').click(paintAPixel);
 
-$("#infinity-button").click(() => { updateStatus('infinitely playing'); });
+$('#infinity-button').click(() => { updateStatus('infinitely playing'); });
 $('#infinity-button').click(startIteration);
 
-$("#one-button").click(() => { updateStatus("one generation played"); });
+$('#one-button').click(() => { updateStatus('one generation played'); });
 $('#one-button').click(oneIteration);
 
-$("#pause-button").click(() => { updateStatus("paused"); });
+$('#pause-button').click(() => { updateStatus('paused'); });
 $('#pause-button').click(stopIteration);
 
 $('#reset-button').click(reset);
@@ -39,11 +39,11 @@ var ypixSize;
 var paused;
 
 function updateGenerationCount(gen) {
-    $("#genCount").text(gen);
+    $('#genCount').text(gen);
 }
 
 function updateStatus(msg) {
-    $("#status").text(msg);
+    $('#status').text(msg);
 }
 
 function setCanvasSize(xdimin, ydimin, xresin, yresin) {
@@ -73,7 +73,7 @@ function updateMesh() {
         }
     }
     resolution = 500 / xcount;
-    $("#x-resolution-value").text(resolution);
+    $('#mesh-resolution-value').text(resolution);
     pjs.updateMesh(0, resolution);
 
     if (500 % ycount !== 0) {
