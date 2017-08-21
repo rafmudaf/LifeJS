@@ -6,9 +6,8 @@
 })();
 
 // UI handling
-$("#x-resolution-slider, #y-resolution-slider").slider();
-$("#x-resolution-slider, #y-resolution-slider").on("slide", updateMesh);
-$("#x-resolution-slider, #y-resolution-slider").on("slideStop", reset);
+$('#mesh-resolution-slider').slider({
+}).on('slideStop', updateMesh);
 
 $('#lifesketch').click(paintAPixel);
 
